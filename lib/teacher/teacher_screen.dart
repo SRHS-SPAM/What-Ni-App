@@ -7,9 +7,9 @@ class TeacherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TeacherScreen'),
+        title: const Text('TeacherScreen'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('Teacher'),
       ),
     );

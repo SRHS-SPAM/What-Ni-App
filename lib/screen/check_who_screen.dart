@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 //import 'package:what_ni_app/login/component/check_google.dart';
 //import 'package:what_ni_app/login/component/google_button.dart';
-import 'package:what_ni_app/teacher/teacher_screen.dart';
 
 class CheckWhoScreen extends StatelessWidget {
   const CheckWhoScreen({super.key});
@@ -21,7 +20,7 @@ class CheckWhoScreen extends StatelessWidget {
                 height: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Color(0xFFE3EEF6),
+                  color: const Color(0xFFE3EEF6),
                 ),
                 child: Row(
                   children: [
@@ -32,9 +31,9 @@ class CheckWhoScreen extends StatelessWidget {
                         height: 65,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
-                          color: Color(0xFF9AD4FF),
+                          color: const Color(0xFF9AD4FF),
                         ),
-                        child: Text(
+                        child: const Text(
                           '학생 로그인',
                           style: TextStyle(
                             color: Colors.white,
