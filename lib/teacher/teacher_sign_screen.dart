@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:what_ni_app/teacher/teacher_next_sign_screen.dart';
 
-class StudentLogin extends StatelessWidget {
-  const StudentLogin({super.key});
+class TeacherSign extends StatelessWidget {
+  const TeacherSign({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +30,24 @@ class StudentLogin extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "전화번호",
+                        "회원가입",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       TextField(
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
-                          hintText: '전화 번호',
+                          hintText: '이름',
                           hintStyle: TextStyle(
                             color: Colors.grey[500],
                           ),
+                          contentPadding: EdgeInsets.all(8),
+                          // 패딩 조정
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(3),
                             borderSide: BorderSide(color: Color(0xFF88ADC8)),
@@ -56,17 +60,33 @@ class StudentLogin extends StatelessWidget {
                         keyboardType: TextInputType.text,
                       ),
                       SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "비밀번호",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        height: 5,
                       ),
                       SizedBox(
                         height: 20,
+                      ),
+                      TextField(
+                        cursorColor: Colors.black,
+                        decoration: InputDecoration(
+                          hintText: '전화번호',
+                          hintStyle: TextStyle(
+                            color: Colors.grey[500],
+                          ),
+                          contentPadding: EdgeInsets.all(8),
+                          // 패딩 조정
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(3),
+                            borderSide: BorderSide(color: Color(0xFF88ADC8)),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(3),
+                            borderSide: BorderSide(color: Color(0xFF88ADC8)),
+                          ),
+                        ),
+                        keyboardType: TextInputType.phone,
+                      ),
+                      SizedBox(
+                        height: 40,
                       ),
                       TextField(
                         cursorColor: Colors.black,
@@ -75,6 +95,8 @@ class StudentLogin extends StatelessWidget {
                           hintStyle: TextStyle(
                             color: Colors.grey[500],
                           ),
+                          contentPadding: EdgeInsets.all(8),
+                          // 패딩 조정
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(3),
                             borderSide: BorderSide(color: Color(0xFF88ADC8)),
@@ -88,40 +110,28 @@ class StudentLogin extends StatelessWidget {
                         keyboardType: TextInputType.text,
                       ),
                       SizedBox(
-                        height: 30,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(3),
-                          color: Color(0xFF88ADC8),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Login',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              color: Color(0xFFD3D3D3),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => TeacherSignNext(),
                             ),
+                          );
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            color: Color(0xFF88ADC8),
                           ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(color: Colors.black),
+                          child: Center(
+                            child: Text(
+                              'Next',
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
                         ),
                       ),

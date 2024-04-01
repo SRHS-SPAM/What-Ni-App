@@ -1,7 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class StudentLogin extends StatelessWidget {
-  const StudentLogin({super.key});
+class TeacherSignNext extends StatefulWidget {
+  const TeacherSignNext({super.key});
+
+  @override
+  State<TeacherSignNext> createState() => _TeacherSignNextState();
+}
+
+class _TeacherSignNextState extends State<TeacherSignNext> {
+  DateTime selectedDate = DateTime(
+    DateTime.now().year,
+    DateTime.now().month,
+    DateTime.now().day,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +41,24 @@ class StudentLogin extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "전화번호",
+                        "회원가입",
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       TextField(
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
-                          hintText: '전화 번호',
+                          hintText: '소속 학교 이름',
                           hintStyle: TextStyle(
                             color: Colors.grey[500],
                           ),
+                          contentPadding: EdgeInsets.all(8),
+                          // 패딩 조정
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(3),
                             borderSide: BorderSide(color: Color(0xFF88ADC8)),
@@ -56,14 +71,7 @@ class StudentLogin extends StatelessWidget {
                         keyboardType: TextInputType.text,
                       ),
                       SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        "비밀번호",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        height: 5,
                       ),
                       SizedBox(
                         height: 20,
@@ -71,10 +79,12 @@ class StudentLogin extends StatelessWidget {
                       TextField(
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
-                          hintText: '비밀번호',
+                          hintText: '생성 반 이름',
                           hintStyle: TextStyle(
                             color: Colors.grey[500],
                           ),
+                          contentPadding: EdgeInsets.all(8),
+                          // 패딩 조정
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(3),
                             borderSide: BorderSide(color: Color(0xFF88ADC8)),
@@ -84,11 +94,47 @@ class StudentLogin extends StatelessWidget {
                             borderSide: BorderSide(color: Color(0xFF88ADC8)),
                           ),
                         ),
-                        obscureText: true,
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.phone,
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 40,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            side:
+                                BorderSide(width: 1, color: Color(0xFF88ADC8)),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '시간 선택',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: onArrowPressed,
+                              child: Icon(
+                                Icons.arrow_drop_down_outlined,
+                                size: 50,
+                                color: Color(0xff6A9CD6),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width,
@@ -99,29 +145,8 @@ class StudentLogin extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            'Login',
+                            'Sign Up',
                             style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 50,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(
-                              width: 1,
-                              color: Color(0xFFD3D3D3),
-                            ),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Sign up',
-                            style: TextStyle(color: Colors.black),
                           ),
                         ),
                       ),
@@ -133,6 +158,40 @@ class StudentLogin extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void onArrowPressed() {
+    final DateTime now = DateTime.now();
+
+    showCupertinoDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            color: Colors.white,
+            height: 300.0,
+            child: CupertinoDatePicker(
+              mode: CupertinoDatePickerMode.dateAndTime,
+              initialDateTime: selectedDate,
+              maximumDate: DateTime(
+                now.year,
+                now.month,
+                now.day,
+                now.hour,
+                now.minute,
+              ),
+              onDateTimeChanged: (DateTime date) {
+                setState(() {
+                  selectedDate = date;
+                });
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

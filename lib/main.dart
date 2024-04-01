@@ -4,6 +4,7 @@ import 'package:what_ni_app/screen/check_who_screen.dart';
 void main() {
   runApp(
     const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: CheckWhoScreen(),
     ),
   );
